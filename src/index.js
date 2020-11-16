@@ -9,6 +9,7 @@ L.Control.EasyPrint = L.Control.extend({
     filename: 'map',
     outputMode: 'print',
     hidden: false,
+    quality:1,
     tileWait: 500,
     hideControlContainer: true,
     hideClasses: [],
@@ -125,7 +126,7 @@ L.Control.EasyPrint = L.Control.extend({
   _createImagePlaceholder: function (sizeMode) {
     var plugin = this;
     domtoimage.toJpeg(this.mapContainer, {
-        quality: 0.60,
+        quality: plugin.options.quality,
         width: parseInt(this.originalState.mapWidth.replace('px')),
         height: parseInt(this.originalState.mapHeight.replace('px'))
       })
@@ -187,7 +188,7 @@ L.Control.EasyPrint = L.Control.extend({
       widthForExport = this.originalState.mapWidth
     }
     domtoimage.toJpeg(plugin.mapContainer, {
-        quality: 0.50,
+        quality: plugin.options.quality,
         width: parseInt(widthForExport),
         height: parseInt(plugin.mapContainer.style.height.replace('px'))
       })
